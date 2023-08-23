@@ -7,6 +7,9 @@ dt_now = datetime.datetime.now()
 
 from functions import sort_expiration
 
+import sys 
+sys.path.append("./")
+
 df, food_list = sort_expiration(filepath = "stock.sqlite", limit=3)
 
 dt_now = datetime.datetime.now()
