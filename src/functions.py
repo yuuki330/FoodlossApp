@@ -2,7 +2,7 @@ import sqlite3
 import os
 import pandas as pd
 
-
+## DB操作系
 # stocksテーブル、discardテーブル、consumeテーブルを初期化
 def init_stock(filepath = "stock.sqlite"):
 
@@ -53,9 +53,20 @@ def add_stock(food, exp_date, pur_date, price, amount, filepath = "stock.sqlite"
     conn = sqlite3.connect(filepath) 
     cur = conn.cursor()
     
-    cur.execute('INSERT INTO stocks(food_name, expiration_date, purchase_date, price, amount) values(?, ?, ?, ?, ?);',(food,exp_date, pur_date, price, amount))
+    cur.execute('INSERT INTO stocks(food_name, expiration_date, purchase_date, price, amount) values(?, ?, ?, ?, ?);',(food, exp_date, pur_date, price, amount))
     
     conn.commit()
+
+def update_stock(item_id, food, exp_date, pur_date, price, amount, filepath = "stock.sqlite"):
+    
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+    
+    
+    cur.execute('UPDATE stocks set food_name=?, expiration_date=?, purchase_date=?, price=?, amount=? WHERE item_id=?;',(food, exp_date, pur_date, price, amount, item_id))
+    
+    conn.commit()
+    
 
 def delete_stock(filepath = "stock.sqlite"): # amountが0のレコードを削除
     
@@ -65,6 +76,15 @@ def delete_stock(filepath = "stock.sqlite"): # amountが0のレコードを削�
     cur.execute("DELETE FROM stocks WHERE amount <= 0")
     
     conn.commit()
+    
+def get_stock(item_id, filepath = "stock.sqlite"):
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+    
+    cur.execute("SELECT * FROM stocks WHERE item_id = ?", (item_id, ))
+    stock = cur.fetchone()
+    
+    return list(stock)
 
 def consume(item_id, consumed_date, consumed_amount, filepath = "stock.sqlite"):
     
@@ -130,14 +150,14 @@ def discard(item_id, discard_date, discard_amount, filepath = "stock.sqlite"):
 
     conn.commit()
 
-
-# 値段カウント関数
-def count_discard(filepath = "stock.sqlite"):
+## カウント系
+# 廃棄金額カウント関数
+def count_discard(start_date, end_date, filepath = "stock.sqlite"):
     
     conn = sqlite3.connect(filepath) 
     cur = conn.cursor()
     
-    cur.execute("SELECT price, amount FROM discard")
+    cur.execute("SELECT price, amount FROM discard WHERE discard_date BETWEEN ? AND ?",(start_date,end_date))
     items = cur.fetchall()
     #print(items)
     
@@ -147,8 +167,48 @@ def count_discard(filepath = "stock.sqlite"):
     
     return discard_sum
 
-# ソート　これから
+# 購入金額カウント（未完成）
+def count_stock(filepath = "stock.sqlite"):
     
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+    
+    cur.execute("SELECT price, amount FROM stocks")
+    items = cur.fetchall()
+    #print(items)
+    
+    purchase_sum = 0
+    for price,amount in items:
+        purchase_sum += price*amount
+    
+    return purchase_sum
+
+
+## ソート系
+# 期限切れ早い順にソート(pandasのdf形式) ＆ 食材上位3つ(list形式)
+def sort_expiration(filepath = "stock.sqlite", limit=3):
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+    
+    sql = f"SELECT * FROM stocks ORDER BY expiration_date LIMIT {limit};"
+    df = pd.read_sql(sql, conn)
+    
+    food_list = df.iloc[:,1].values.tolist()
+    
+    return df,food_list
+
+# 購入日順にソート(pandasのdf形式) ＆ 食材上位3つ(list形式)
+def sort_purchase(filepath = "stock.sqlite", limit=3):
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+    
+    sql = f"SELECT * FROM stocks ORDER BY purchase_date DESC LIMIT {limit};"
+    df = pd.read_sql(sql, conn)
+    
+    food_list = df.iloc[:,1].values.tolist()
+    
+    return df,food_list
+
 
 """
 # 構文メモ
