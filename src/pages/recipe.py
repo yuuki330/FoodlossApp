@@ -36,8 +36,10 @@ for v in items_list:
 
 print(recipe_title_list[0])
 for i in range(len(recipe_title_list)):
-    recipe = '<a href=' + str(recipe_url_list[i]) + 'style="font-family:monospace; color:cyan; font-size: 15px;">' + str(recipe_title_list[i]) + '</a>'
+    recipe = '<a href="' + str(recipe_url_list[i]) + '" target="_blank";style="font-family:monospace; color:cyan; font-size: 15px;">' + str(recipe_title_list[i]) + '</a>'
     recipe_img = '<img src="' + str(recipe_img_url_list[i]) + '" height="100" width="200">'
     st.components.v1.html("<center>" + recipe + "</center>" + "<center>" + recipe_img + "</center>")
+    # st.components.v1.html("<center>" + recipe + "</center>")
+    # st.components.v1.html(recipe_img)
 
 
