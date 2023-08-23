@@ -18,7 +18,7 @@ def get_vision_api_response(input_file: str):
     client = vision.ImageAnnotatorClient()
     with io.open(input_file, 'rb') as image_file:
         content = image_file.read()
-
+        
     # bytes化した写真データをAPIに送る
     image = vision.Image(content=content)
 
@@ -80,7 +80,7 @@ def get_food_and_price(lines: List[str]) -> str:
     return ''.join(texts)
 
 def ocr(input_file: str) -> List[str]:
-    response = get_vision_api_response()
+    response = get_vision_api_response(input_file)
 
     lines = get_sorted_lines(response)
 
