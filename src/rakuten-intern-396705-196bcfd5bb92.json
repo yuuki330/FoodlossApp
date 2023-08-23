@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "rakuten-intern-396705",
+  "private_key_id": "196bcfd5bb928412822aada1f38eaa2b5aa8cafa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCrQ8htwiZlq6ba\nfmkHCTMHo2yv5rN0sGY14coAw4YhhbyOy93ChaEpNPpDG69VCpeQBcCb7qsK8pdw\n25n1J2QWk2MCC/TqbEsMU83XCnO7lcdR3EcO4M6x02ahh+GoOVq1WnzzetRU6EpR\n9T4Z/wtTLIuR1myrLTft8mlfpUK3gkVknNTLawsG3MeKd55it7gbV7XSIqP/3jEO\n6rppr7GrxaYRZ7qgmZFJKOx8+JMxXlFTaJaekWIuJnHTmm5uQbCtk+wzH3/zOnv1\nKlZKpAodx5QQCVKmAOQa++OkRvNO7WgrgSA6W7pyBL89Ret4rOJeO0Ynq6KoSsJ+\nP3yDWbGHAgMBAAECggEATp5QkRX5c12fPBigVPMDomOCXqMcSRo66UwrYzteROA0\nBScPtx6JszVXFtxMGdFBbwM8/jfK+70OCOg+HfxFpVlmL0fW14/7yX5k9Oye4QMq\nGulwEyPermH5cHhEfelKOwr9ZfXCJ/H0P/hA2EUsaTN/JGTWwKOC06+ecKIX5M3f\nfZMW2lfiHLGP0pFFYlD/iXNVFL/6aXAtiG94Y0Im20KP8Fpn1pE2ZESlwAxi/gXz\nvjZGQYhhI5/6XywWF/eL/7MM2CO0km0xzkXigqB9ZStWtRG0qHRvQXqbSkbLGs/+\nNhm+TSEsJw4U9bgWN3SDpHaQzSYUGmo+yY6Dm2KVsQKBgQDYZTxNMk9HGdpfPpwn\npY29bDH17jeK78yzzmWovvQqyJuMSz0vOfdnAPTKoXeFMl97cngdNgqiTuEyUl6U\nW2pITrCDVhMtwGkmPnomdUZCSUONFBjTQwZY0Ng3NmofzA/PVGmZnBA+rp537Sgf\n3v8CsvZTljUyAwwCrlDkper+kQKBgQDKnArVHV4VXTIFfAYUQmEMgNLWmvin/J16\nIePrj17NuoQSoH8eE7sEYanP90TeGhTLvhxBVU6LLp+jiiXQiL3jblYu/nFVfqjP\nrbsCI1idfqQ4IXmZO4LvRn+ehG/u0RzWo4AAG42NUPAkloJ8t9fKPh0ZpUlHV1FQ\nooK9aL3qlwKBgQCXkCByOUCJnjPy7dlVc4EZIUTE6bqBV3/amD9ft48wwB0iYDhU\ncZc0z9ika/9YjXWO8xfp7cX49KKKKmMQKg8A4gyDkLASJWgAX1YSxaUWHFZx45eX\nsKQrZOtrkHM4HiccohTsgABoxsk7WiH2YKvf6hTZaqWLh9LLtef2nbc/4QKBgEe8\nYAl80Gb4DFHsy6o4pmvq4LujOw8fXhJ0FWK97G8i7sg5k0hu6/RtL9a2UefhjCNn\nOFHZhmm5JESfESx4feMcmd8hr7b5lYOSm3fyU9nPkQ1erNMYQw+9Akp50bfYykEk\nuplPKBs04RHTSHgoD3tH6r29y+g6fkvyfh/aCgQZAoGBAMSsNqClOMr5jPNNZH9X\nJMcon7pELd/zSZpznUhX9Cx/gUeo+Dw2L3tXWZmvp6MZRMpQI4pacmZfoamYiMlw\nLNlDwJSo8VVyghdDvUFliLKW9F2rtnU/0RLZGr0EBbKMnN9/1kZGEK/YhRSvpJIp\nZUlIJr/DscXHG9zzdlsjGjY5\n-----END PRIVATE KEY-----\n",
+  "client_email": "rakuten-intern-team-5@rakuten-intern-396705.iam.gserviceaccount.com",
+  "client_id": "100859731921355790064",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rakuten-intern-team-5%40rakuten-intern-396705.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

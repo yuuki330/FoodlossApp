@@ -3,7 +3,7 @@ from typing import List
 import sqlite3 
 
 def suggest_recipes(food_list: List[str]) -> List[tuple[str, str, str, str, str]]:
-    conn = sqlite3.connect("recipe.db")
+    conn = sqlite3.connect("../recipe.db")
     cur = conn.cursor()
 
     execute_order = "SELECT * FROM recipe WHERE "
