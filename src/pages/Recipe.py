@@ -84,11 +84,11 @@ else:
         button_clicked = st.session_state.get(f"button_clicked_{recipeTitle}", False)
 
         # 初期の材料リストを定義
-        material = f'<p target="_blank">{materials_html}</p>'
+        material = materials_html  # <p>タグを削除
 
         if button_clicked:
             # ボタンがクリックされた場合、material変数を更新して隠れている材料を追加
-            material += f'<p target="_blank">{hidden_html}</p>'
+            material += hidden_html   # ここでも<p>タグを削除
 
         # material変数に含まれるHTMLの<li>タグの数をカウント
         material_li_count = material.count('<li>')
