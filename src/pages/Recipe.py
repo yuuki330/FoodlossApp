@@ -82,24 +82,20 @@ else:
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
         material = f'<p target="_blank">{materials_html}</p>'
-
-        # ボタンがクリックされたかどうかの状態を確認
-        button_clicked = st.session_state.get(f"button_clicked_{recipeTitle}", False)
-
-        if not button_clicked and hidden_materials:
-            if st.button(f"もっと見る", key=recipeTitle):
-                st.session_state[f"button_clicked_{recipeTitle}"] = True
-                button_clicked = True
-
-        if button_clicked:
-            material = f'<p target="_blank">{materials_html}{hidden_html}</p>'
-
         combined_html = f"{recipe}<br>{material}"
 
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
                 st.components.v1.html(combined_html, height=300)
+                
+                # ボタンをHTMLの下に配置
+                if hidden_materials and st.button(f"もっと見る", key=recipeTitle):
+                    material = f'<p target="_blank">{materials_html}{hidden_html}</p>'
+                    combined_html = f"{recipe}<br>{material}"
+                    st.components.v1.html(combined_html, height=300)
+
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
+
 
