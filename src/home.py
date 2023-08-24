@@ -38,10 +38,10 @@ notice_df['expiration_date'] = notice_df['expiration_date'].dt.date
 
 if len(notice_df) == 0:
     expanded = False
-    comment = "賞味期限が近いものはありません"
+    comment = "消費期限が近いものはありません"
 else:
     expanded = True
-    comment = "賞味期限が近いまたは過ぎているものがあります"
+    comment = "消費期限が近いまたは過ぎているものがあります"
 
 with st.expander(comment, expanded=expanded):
     st.dataframe(notice_df.loc[:, ["food_name", "expiration_date", "amount"]], hide_index=True)
