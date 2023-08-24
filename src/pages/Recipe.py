@@ -94,8 +94,7 @@ else:
         # 1つの<li>タグ項目の高さを設定
         height_per_li = 21
         # 必要な高さを計算
-        # calculated_height = material_li_count * height_per_li + 50
-        calculated_height = material_li_count * height_per_li 
+        calculated_height = material_li_count * height_per_li + 50
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 13px;">{recipeTitle}</a>'
         combined_html = f"{recipe}<br>{material}"
