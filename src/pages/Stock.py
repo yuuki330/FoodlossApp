@@ -91,12 +91,13 @@ if len(selected_row) == 0:
     with st.form("追加"):
         st.write("追加")
         food_name = st.text_input("食品名")
+        amount = st.number_input("数量[個]",min_value=0)
+        price = st.number_input("値段[円]",min_value=0)
         expiration_date = st.date_input("消費期限", value=datetime.date(dt_now.year, dt_now.month, dt_now.day))
         expiration_date = expiration_date.strftime("%Y%m%d")
         purchase_date = st.date_input("購入日",  value=datetime.date(dt_now.year, dt_now.month, dt_now.day))
         purchase_date = purchase_date.strftime("%Y%m%d")
-        price = st.number_input("値段",min_value=0)
-        amount = st.number_input("量",min_value=0)
+        
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("追加")
@@ -114,6 +115,8 @@ else:
         print(item_info)
         st.write("変更")
         food_name2 = st.text_input("食品名",value=item_info[1])
+        amount2 = st.number_input("数量[個]",min_value=0,value=item_info[5])
+        price2 = st.number_input("値段[円]",min_value=0,value=item_info[4])
 
         item_exp_date = datetime.datetime.strptime(str(item_info[2]),'%Y%m%d')
         expiration_date2 = st.date_input("消費期限", value=datetime.date(item_exp_date.year, item_exp_date.month, item_exp_date.day))
@@ -123,13 +126,10 @@ else:
         purchase_date2 = st.date_input("購入日",  value=datetime.date(item_pur_date.year, item_pur_date.month, item_pur_date.day))
         purchase_date2 = purchase_date2.strftime("%Y%m%d")
 
-        price2 = st.number_input("値段",min_value=0,value=item_info[4])
-        amount2 = st.number_input("量",min_value=0,value=item_info[5])
-
         # Every form must have a submit button.
         submitted = st.form_submit_button("変更")
         if submitted:
+            # st.write("変更",food_name2, expiration_date2, purchase_date2, price2, amount)
             st.write("変更",food_name2, expiration_date2, purchase_date2, price2, amount)
-            print(food_name2, expiration_date2, purchase_date2, price2, amount)
             update_stock(item_id2,food_name2, expiration_date2, purchase_date2, price2, amount2, filepath)
             st.experimental_rerun()
