@@ -93,11 +93,11 @@ else:
         # material変数に含まれるHTMLの<li>タグの数をカウント
         material_li_count = material.count('<li>')
         # 1つの<li>タグ項目の高さを設定
-        height_per_li = 30
+        height_per_li = 35
         # 必要な高さを計算
         calculated_height = material_li_count * height_per_li
 
-        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
+        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
         combined_html = f"{recipe}<br>{material}"
 
         with st.container():
