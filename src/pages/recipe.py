@@ -66,7 +66,7 @@ else:
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
         with st.container():
-            col1, col2 = st.columns(1,1)
+            col1, col2 = st.columns([1,1])
             with col1:
                 st.components.v1.html(f"{recipe}") 
             with col2:
