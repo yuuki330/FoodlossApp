@@ -84,7 +84,7 @@ else:
         button_clicked = st.session_state.get(f"button_clicked_{recipeTitle}", False)
 
         # 初期の材料リストを定義
-        material = f'<p target="_blank">{materials_html}</p>'
+        material = f'{materials_html}'
 
         if button_clicked:
             # ボタンがクリックされた場合、material変数を更新して隠れている材料を追加
@@ -107,6 +107,3 @@ else:
 
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
-
-
-
