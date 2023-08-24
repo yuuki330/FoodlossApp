@@ -7,9 +7,19 @@ from typing import List
 import matplotlib.pyplot as plt
 from preprocess import get_food_and_price_list
 from google.cloud.vision_v1 import types
+import streamlit as st
 
+# 現在のスクリプトファイルのディレクトリを取得
+current_dir = os.path.dirname(os.path.abspath(__file__))
+#"stock.sqlite"のディレクトリパスを取得
+api_filepath = os.path.join(current_dir, "pages", "data", "rakuten-intern-396705-196bcfd5bb92.json")
+# ファイルの存在を確認
+if not os.path.exists(api_filepath):
+    st.error(f"{api_filepath} が存在しません。")
+    exit()
+    
 # Vision APIのキー
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./rakuten-intern-396705-196bcfd5bb92.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = api_filepath
 
 def get_vision_api_response(input_file: str):
     # レシートのパス
