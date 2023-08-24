@@ -70,12 +70,20 @@ else:
 
         materials_html = '<ul style="font-family:monospace; color:white; font-size: 12px;">'
         for material in displayed_materials:
-            materials_html += f'<li>{material}</li>'
+            # food_listに材料が存在する場合、太字で表示
+            if material in food_list:
+                materials_html += f'<li><strong>{material}</strong></li>'
+            else:
+                materials_html += f'<li>{material}</li>'
 
         hidden_items = ''
         if hidden_materials:
             for material in hidden_materials:
-                hidden_items += f'<li>{material}</li>'
+                # food_listに材料が存在する場合、太字で表示
+                if material in food_list:
+                    hidden_items += f'<li><strong>{material}</strong></li>'
+                else:
+                    hidden_items += f'<li>{material}</li>'
 
         # ボタンがクリックされたかどうかの状態を確認
         button_clicked = st.session_state.get(f"button_clicked_{recipeTitle}", False)
