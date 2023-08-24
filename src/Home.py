@@ -6,21 +6,7 @@ import datetime
 from functions import sort_expiration, count_period_consume_discard
 import os
 
-# カスタムスタイリング
-st.markdown(
-    """
-    <style>
-        .highlight {
-            color: #E694FF;
-            font-weight: bold;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-# アプリのタイトル
-st.markdown("<h1 style='text-align: center;'>ホーム</h1>", unsafe_allow_html=True)
+st.title("ホーム")
 
 # 現在のスクリプトファイルのディレクトリを取得
 current_dir = os.path.dirname(os.path.abspath(__file__))
