@@ -8,6 +8,19 @@ import os
 
 st.title("ホーム")
 
+# カスタムスタイリング
+st.markdown(
+    """
+    <style>
+        .highlight {
+            color: #E694FF;
+            font-weight: bold;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # 現在のスクリプトファイルのディレクトリを取得
 current_dir = os.path.dirname(os.path.abspath(__file__))
 filepath = os.path.join(current_dir, "pages", "data", "stock.sqlite")
