@@ -71,24 +71,23 @@ else:
         materials_html = '<ul style="font-family:monospace; color:white; font-size: 12px;">'
         for material in displayed_materials:
             materials_html += f'<li>{material}</li>'
-        materials_html += '</ul>'
 
-        hidden_html = ''
+        hidden_items = ''
         if hidden_materials:
-            hidden_html = '<ul style="font-family:monospace; color:white; font-size: 12px;"">'
             for material in hidden_materials:
-                hidden_html += f'<li>{material}</li>'
-            hidden_html += '</ul>'
+                hidden_items += f'<li>{material}</li>'
 
         # ボタンがクリックされたかどうかの状態を確認
         button_clicked = st.session_state.get(f"button_clicked_{recipeTitle}", False)
 
         # 初期の材料リストを定義
-        material = materials_html  # <p>タグを削除
+        material = materials_html
 
         if button_clicked:
             # ボタンがクリックされた場合、material変数を更新して隠れている材料を追加
-            material += hidden_html   # ここでも<p>タグを削除
+            material += hidden_items
+
+        material += '</ul>'
 
         # material変数に含まれるHTMLの<li>タグの数をカウント
         material_li_count = material.count('<li>')
