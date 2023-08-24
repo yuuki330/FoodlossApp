@@ -72,7 +72,7 @@ else:
         for material in displayed_materials:
             # food_listに材料が存在する場合、太字で表示
             if material in food_list:
-                materials_html += f'<li><strong>{material}</strong></li>'
+                materials_html += f'<li style="font-weight: bold;">{material}</li>'
             else:
                 materials_html += f'<li>{material}</li>'
 
@@ -81,7 +81,7 @@ else:
             for material in hidden_materials:
                 # food_listに材料が存在する場合、太字で表示
                 if material in food_list:
-                    hidden_items += f'<li><strong>{material}</strong></li>'
+                    hidden_items += f'<li style="font-weight: bold;">{material}</li>'
                 else:
                     hidden_items += f'<li>{material}</li>'
 
