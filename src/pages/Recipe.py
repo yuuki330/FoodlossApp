@@ -64,7 +64,8 @@ else:
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
 
-        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
+        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 30px;">{recipeTitle}</a>'
+        material = f'<p target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeMaterial}</p>'
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
