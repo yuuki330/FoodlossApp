@@ -13,7 +13,8 @@ from functions import init_stock, add_stock, delete_stock, consume, discard,coun
 # 現在のスクリプトファイルのディレクトリを取得
 current_dir = os.path.dirname(os.path.abspath(__file__))
 #"stock.sqlite"のディレクトリパスを取得
-filepath = os.path.join(current_dir, "data", "stock.sqlite")
+# filepath = os.path.join(current_dir, "data", "stock.sqlite")
+filepath = st.session_state.user_db_filepath
 
 # ファイルの存在を確認
 if not os.path.exists(filepath):
@@ -87,7 +88,6 @@ with col4:
             st.experimental_rerun()
 
 if len(selected_row) == 0:
-
     with st.form("追加"):
         st.write("追加")
         food_name = st.text_input("食品名")
@@ -98,7 +98,6 @@ if len(selected_row) == 0:
         purchase_date = st.date_input("購入日",  value=datetime.date(dt_now.year, dt_now.month, dt_now.day))
         purchase_date = purchase_date.strftime("%Y%m%d")
         
-
         # Every form must have a submit button.
         submitted = st.form_submit_button("追加")
         if submitted:

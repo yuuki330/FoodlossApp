@@ -3,10 +3,35 @@ import pandas as pd
 import numpy as np
 import datetime
 
-from functions import sort_expiration, count_period_consume_discard
+from functions import sort_expiration, count_period_consume_discard, init_stock
 import os
 
+
 st.title("ホーム")
+
+# セッション状態にuser_db_filepathとuser_nameが存在しなければ、初期値として空文字を設定
+if 'user_db_filepath' not in st.session_state:
+    st.session_state.user_db_filepath = ""
+
+if 'user_name' not in st.session_state:
+    st.session_state.user_name = ""
+
+# ユーザー名がセッション状態にない場合のみ、入力画面を表示
+if not st.session_state.user_name:
+    user_name = st.text_input("ユーザー名を入力してください：")
+    
+    if st.button("登録"):
+        # ユーザー名が入力されたら、そのユーザーのsqliteファイルへのパスとユーザー名をセッション状態に設定
+        if user_name:
+            # 現在のスクリプトファイルのディレクトリを取得
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            # ユーザー名に基づいてsqliteファイルのパスを設定
+            st.session_state.user_db_filepath = os.path.join(current_dir, "pages", "data", f"{user_name}_stock.sqlite")
+            st.session_state.user_name = user_name
+
+        if st.session_state.user_db_filepath and not os.path.exists(st.session_state.user_db_filepath):
+            st.error(f"初めてのアクセスのため、新しくデータを作成します。")
+            init_stock(filepath=st.session_state.user_db_filepath)
 
 # カスタムスタイリング
 st.markdown(
@@ -22,8 +47,9 @@ st.markdown(
 )
 
 # 現在のスクリプトファイルのディレクトリを取得
-current_dir = os.path.dirname(os.path.abspath(__file__))
-filepath = os.path.join(current_dir, "pages", "data", "stock.sqlite")
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+# filepath = os.path.join(current_dir, "pages", "data", "stock.sqlite")
+filepath = st.session_state.user_db_filepath
 
 if not os.path.exists(filepath):
     st.error(f"{filepath} が存在しません。")

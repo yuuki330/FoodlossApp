@@ -7,7 +7,8 @@ import os
 # 現在のスクリプトファイルのディレクトリを取得
 current_dir = os.path.dirname(os.path.abspath(__file__))
 #"stock.sqlite"のディレクトリパスを取得
-filepath = os.path.join(current_dir, "data", "stock.sqlite")
+# filepath = os.path.join(current_dir, "data", "stock.sqlite")
+filepath = st.session_state.user_db_filepath
 #"recipe.db"のディレクトリパスを取得
 recipe_path = os.path.join(current_dir, "data", "recipe.db")
 

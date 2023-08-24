@@ -19,7 +19,8 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 #"expiration.db"のディレクトリパスを取得
 expiration_path = os.path.join(current_dir, "data", "expiration.db")
 #"stock.sqlite"のディレクトリパスを取得
-stock_path = os.path.join(current_dir, "data", "stock.sqlite")
+# stock_path = os.path.join(current_dir, "data", "stock.sqlite")
+stock_path = st.session_state.user_db_filepath
 
 def get_expiration_limit(food_name, filepath = expiration_path):
     import sqlite3
