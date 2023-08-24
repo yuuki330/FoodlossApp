@@ -13,10 +13,13 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 from functions import add_stock
 import datetime
 today = datetime.date.today()
-import sys
 
+# 現在のスクリプトファイルのディレクトリを取得
+current_dir = os.path.dirname(os.path.abspath(__file__))
+#"expiration.db"のディレクトリパスを取得
+expiration_path = os.path.join(current_dir, "data", "expiration.db")
 
-def get_expiration_limit(food_name, filepath = '/src/pages/data/expiration.db'):
+def get_expiration_limit(food_name, filepath = expiration_path):
     import sqlite3
     conn = sqlite3.connect(filepath) 
     cur = conn.cursor()
