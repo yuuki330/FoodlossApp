@@ -97,7 +97,7 @@ else:
         # 必要な高さを計算
         calculated_height = material_li_count * height_per_li
 
-        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
+        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 14px;">{recipeTitle}</a>'
         combined_html = f"{recipe}<br>{material}"
 
         with st.container():
