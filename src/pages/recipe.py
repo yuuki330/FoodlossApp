@@ -61,7 +61,6 @@ else:
     # food_list = ['にんじん', 'じゃがいも', 'たまねぎ']
     _, food_list = sort_expiration(filepath=filepath, limit=3)
     items_list = suggest_recipe(filepath)
-    st.text(items_list)
 
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
