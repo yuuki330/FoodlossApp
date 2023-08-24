@@ -92,12 +92,11 @@ else:
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
         combined_html = f"{recipe}<br>{material}"
-        print(combined_html)
 
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
-                st.components.v1.html(combined_html, height=300)
+                st.components.v1.html(combined_html, height=1000)
                 
                 # ボタンをHTMLの下に配置
                 if hidden_materials and not button_clicked:
