@@ -10,7 +10,10 @@ import os
 st.markdown(
     """
     <style>
-        /* You can include custom CSS here */
+        .highlight {
+            color: #E694FF;
+            font-weight: bold;
+        }
     </style>
     """,
     unsafe_allow_html=True,
@@ -44,7 +47,8 @@ else:
     comment = "消費期限が近いまたは過ぎているものがあります"
 
 with st.expander(comment, expanded=expanded):
-    st.dataframe(notice_df.loc[:, ["food_name", "expiration_date", "amount"]], hide_index=True)
+    for _, row in notice_df.iterrows():
+        st.markdown(f"<span class='highlight'>{row['food_name']}</span> の消費期限は <span class='highlight'>{row['expiration_date']}</span> です。", unsafe_allow_html=True)
 
 # ダミーデータの作成
 data = np.random.rand(50, 2)
