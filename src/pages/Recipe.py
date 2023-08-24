@@ -50,6 +50,13 @@ def suggest_recipe(db_path="stock.sqlite"):
     _, food_list = sort_expiration(db_path)
     return _suggest_recipes(food_list)
 
+def highlight_material(material, food_list, color):
+    """food_list内の材料がmaterialに部分一致する場合、色を変更する関数"""
+    for food in food_list:
+        if food in material:
+            material = material.replace(food, f'<span style="color: {color};">{food}</span>')
+    return material
+
 # ファイルの存在を確認
 if not os.path.exists(filepath):
     st.error(f"{filepath} が存在しません。")
@@ -69,21 +76,17 @@ else:
         hidden_materials = recipeMaterial[initial_display:]
 
         materials_html = '<ul style="font-family:monospace; color:white; font-size: 12px;">'
+        highlight_color = "#E694FF"  # 赤に設定。他の色に変更したい場合は、上記のHEXコードを使用してください。
+
         for material in displayed_materials:
-            # food_listに材料が存在する場合、文字色を赤に変更
-            if material in food_list:
-                materials_html += f'<li style="color: red;">{material}</li>'
-            else:
-                materials_html += f'<li>{material}</li>'
+            highlighted_material = highlight_material(material, food_list, highlight_color)
+            materials_html += f'<li>{highlighted_material}</li>'
 
         hidden_items = ''
         if hidden_materials:
             for material in hidden_materials:
-                # food_listに材料が存在する場合、文字色を赤に変更
-                if material in food_list:
-                    hidden_items += f'<li style="color: red;">{material}</li>'
-                else:
-                    hidden_items += f'<li>{material}</li>'
+                highlighted_material = highlight_material(material, food_list, highlight_color)
+                hidden_items += f'<li>{highlighted_material}</li>'
 
         # ボタンがクリックされたかどうかの状態を確認
         button_clicked = st.session_state.get(f"button_clicked_{recipeTitle}", False)
