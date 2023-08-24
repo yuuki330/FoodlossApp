@@ -70,5 +70,5 @@ else:
             with col1:
                 st.components.v1.html(f"{recipe}") 
             with col2:
-                st.image(foodImageUrl, use_column_width = "auto", caption="aaaaaa")
+                st.image(foodImageUrl, use_column_width = "auto")
 
