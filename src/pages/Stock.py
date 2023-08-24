@@ -14,8 +14,8 @@ from functions import init_stock, add_stock, delete_stock, consume, discard,coun
 # current_dir = os.getcwd()
 current_dir = os.path.dirname(os.path.abspath(__file__))
 #"stock.sqlite"のディレクトリパスを取得
-filepath = os.path.join(current_dir, "pages", "data", "stock.sqlite")
-
+filepath = os.path.join(current_dir, "data", "stock.sqlite")
+st.text(filepath)
 # ファイルの存在を確認
 if not os.path.exists(filepath):
     st.error(f"{filepath} が存在しません。")
