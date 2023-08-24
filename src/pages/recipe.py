@@ -3,8 +3,8 @@ from typing import List
 import sqlite3
 import pandas as pd
 import os
-import sys 
-sys.path.append("../")
+# import sys 
+# sys.path.append("../")
 
 # 現在のスクリプトファイルのディレクトリを取得
 current_dir = os.path.dirname(os.path.abspath(__file__))

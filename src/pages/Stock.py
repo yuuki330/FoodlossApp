@@ -8,8 +8,8 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 import datetime
 dt_now = datetime.datetime.now()
 
-import sys 
-sys.path.append("../")
+# import sys 
+# sys.path.append("../")
 from functions import init_stock, add_stock, delete_stock, consume, discard,count_discard, get_stock, update_stock
 
 # 現在のスクリプトファイルのディレクトリを取得
