@@ -64,7 +64,7 @@ else:
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
         recipeMaterial = eval(recipeMaterial)
-        initial_display = 3
+        initial_display = 4
         displayed_materials = recipeMaterial[:initial_display]
         hidden_materials = recipeMaterial[initial_display:]
 
