@@ -90,13 +90,20 @@ else:
             # ボタンがクリックされた場合、material変数を更新して隠れている材料を追加
             material += f'<p target="_blank">{hidden_html}</p>'
 
+        # material変数に含まれるHTMLの<li>タグの数をカウント
+        material_li_count = material.count('<li>')
+        # 1つの<li>タグ項目の高さを設定
+        height_per_li = 20
+        # 必要な高さを計算
+        calculated_height = material_li_count * height_per_li
+
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
         combined_html = f"{recipe}<br>{material}"
 
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
-                st.components.v1.html(combined_html, height=150)
+                st.components.v1.html(combined_html, height=calculated_height)
                 
                 # ボタンをHTMLの下に配置
                 if hidden_materials and not button_clicked:
