@@ -83,8 +83,12 @@ else:
         # ボタンがクリックされたかどうかの状態を確認
         button_clicked = st.session_state.get(f"button_clicked_{recipeTitle}", False)
 
+        # 初期の材料リストを定義
+        material = f'<p target="_blank">{materials_html}</p>'
+
         if button_clicked:
-            material = f'<p target="_blank">{materials_html}{hidden_html}</p>'
+            # ボタンがクリックされた場合、material変数を更新して隠れている材料を追加
+            material += f'<p target="_blank">{hidden_html}</p>'
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
         combined_html = f"{recipe}<br>{material}"
