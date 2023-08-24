@@ -58,7 +58,6 @@ elif not os.path.exists(recipe_path):
 else:
     ## streamlit表示
     st.markdown("# レシピ検索")
-    # food_list = ['にんじん', 'じゃがいも', 'たまねぎ']
     _, food_list = sort_expiration(filepath=filepath, limit=3)
     items_list = suggest_recipe(filepath)
 

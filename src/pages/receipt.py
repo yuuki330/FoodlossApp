@@ -32,7 +32,7 @@ def get_expiration_limit(food_name, filepath = expiration_path):
     return items # like (180, 0) or None
 
 
-st.title("page2")
+st.title("レシート読み込み")
 
 uploaded_file = st.file_uploader("レシート画像をアップロード", type=['jpg','png'])
 
