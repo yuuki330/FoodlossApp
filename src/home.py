@@ -18,8 +18,8 @@ filepath = os.path.join(current_dir, "pages", "data", "stock.sqlite")
 if not os.path.exists(filepath):
     st.error(f"{filepath} が存在しません。")
     exit()
-    
-st.text({filepath})
+
+st.text(filepath)
 df, food_list = sort_expiration(filepath = filepath, limit=3)
 
 dt_now = datetime.datetime.now()
