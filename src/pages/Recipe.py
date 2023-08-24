@@ -80,8 +80,13 @@ else:
                 hidden_html += f'<li>{material}</li>'
             hidden_html += '</ul>'
 
+        # ボタンがクリックされたかどうかの状態を確認
+        button_clicked = st.session_state.get(f"button_clicked_{recipeTitle}", False)
+
+        if button_clicked:
+            material = f'<p target="_blank">{materials_html}{hidden_html}</p>'
+
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
-        material = f'<p target="_blank">{materials_html}</p>'
         combined_html = f"{recipe}<br>{material}"
 
         with st.container():
@@ -90,12 +95,14 @@ else:
                 st.components.v1.html(combined_html, height=300)
                 
                 # ボタンをHTMLの下に配置
-                if hidden_materials and st.button(f"もっと見る", key=recipeTitle):
-                    material = f'<p target="_blank">{materials_html}{hidden_html}</p>'
-                    combined_html = f"{recipe}<br>{material}"
-                    st.components.v1.html(combined_html, height=300)
+                if hidden_materials and not button_clicked:
+                    if st.button(f"もっと見る", key=recipeTitle):
+                        st.session_state[f"button_clicked_{recipeTitle}"] = True
+                        # ページを再読み込み
+                        st.experimental_rerun()
 
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
+
 
 
