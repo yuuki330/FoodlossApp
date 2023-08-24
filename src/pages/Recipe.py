@@ -95,6 +95,6 @@ else:
                 st.components.v1.html(combined_html, height=300) 
                 if hidden_materials and st.button(f"もっと見る", key=recipeTitle):
                     combined_html += hidden_html
-                    st.components.v1.html(combined_html, height=300) 
+                    # st.components.v1.html(combined_html, height=300) 
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
