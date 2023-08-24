@@ -70,6 +70,7 @@ else:
             col1, col2 = st.columns([1,1])
             with col1:
                 st.components.v1.html(f"{recipe}") 
+                st.components.v1.html(f"{material}")
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
 
