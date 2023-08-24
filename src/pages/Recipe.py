@@ -64,8 +64,14 @@ else:
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
 
+        # リストの各項目をHTMLの箇条書きに変換
+        materials_html = '<ul>'
+        for material in recipeMaterial:
+            materials_html += f'<li>{material}</li>'
+        materials_html += '</ul>'
+
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 30px;">{recipeTitle}</a>'
-        material = f'<p target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeMaterial}</p>'
+        material = f'<p target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{materials_html}</p>'
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
@@ -73,4 +79,3 @@ else:
                 st.components.v1.html(f"{material}")
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
-
