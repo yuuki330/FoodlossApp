@@ -96,7 +96,7 @@ else:
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
-                st.components.v1.html(combined_html, height=1000)
+                st.components.v1.html(combined_html, height=100)
                 
                 # ボタンをHTMLの下に配置
                 if hidden_materials and not button_clicked:
