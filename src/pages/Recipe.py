@@ -77,17 +77,20 @@ else:
             materials_html += f'<li>{material}</li>'
         materials_html += '</ul>'
 
-        if hidden_materials and st.button(f"もっと見る: {recipeTitle}"):
+        hidden_html = ''
+        if hidden_materials:
             hidden_html = '<ul style="font-family:monospace; color:white; font-size: 12px;">'
             for material in hidden_materials:
                 hidden_html += f'<li>{material}</li>'
             hidden_html += '</ul>'
-            materials_html += hidden_html
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
         material = f'<p target="_blank">{materials_html}</p>'
 
         combined_html = f"{recipe}<br>{material}"
+        
+        if hidden_materials and st.button(f"もっと見る: {recipeTitle}"):
+            combined_html += hidden_html
 
         with st.container():
             col1, col2 = st.columns([1,1])
