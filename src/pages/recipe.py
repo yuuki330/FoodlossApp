@@ -5,11 +5,11 @@ import pandas as pd
 import os
 
 # 現在のスクリプトファイルのディレクトリを取得
-current_dir = os.getcwd()
+current_dir = os.path.dirname(os.path.abspath(__file__))
 #"stock.sqlite"のディレクトリパスを取得
-filepath = os.path.join(current_dir, "pages", "data", "stock_japanese.sqlite")
+filepath = os.path.join(current_dir, "data", "stock_japanese.sqlite")
 #"recipe.db"のディレクトリパスを取得
-recipe_path = os.path.join(current_dir, "pages", "data", "recipe.db")
+recipe_path = os.path.join(current_dir, "data", "recipe.db")
 
 def _suggest_recipes(food_list: List[str], db_path: str) -> List[tuple[str, str, str, str, str]]:
     try:
