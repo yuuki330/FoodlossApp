@@ -2,8 +2,16 @@ import streamlit as st
 from typing import List
 import sqlite3
 import pandas as pd
+import os
 import sys 
 sys.path.append("../")
+
+# 現在のスクリプトファイルのディレクトリを取得
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# 1つ上の階層のディレクトリパスを取得
+parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+#"stock.sqlite"のディレクトリパスを取得
+filepath = os.path.join(parent_dir, "stock_japanese.sqlite")
 
 def _suggest_recipes(food_list: List[str]) -> List[tuple[str, str, str, str, str]]:
     try:
@@ -48,7 +56,7 @@ def suggest_recipe(db_name="stock.sqlite"):
 ## streamlit表示
 st.markdown("# レシピ検索")
 food_list = ['にんじん', 'じゃがいも', 'たまねぎ']
-items_list = suggest_recipe("stock_japanese.sqlite")
+items_list = suggest_recipe(filepath)
 
 for v in items_list:
     (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v

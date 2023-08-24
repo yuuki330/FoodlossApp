@@ -8,15 +8,11 @@ dt_now = datetime.datetime.now()
 from functions import sort_expiration
 
 import os
-import sys 
-sys.path.append("./")
 
 # 現在のスクリプトファイルのディレクトリを取得
 current_dir = os.path.dirname(os.path.abspath(__file__))
-# 1つ上の階層のディレクトリパスを取得
-parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
 #"stock.sqlite"のディレクトリパスを取得
-filepath = os.path.join(parent_dir, "stock.sqlite")
+filepath = os.path.join(current_dir, "stock.sqlite")
 
 df, food_list = sort_expiration(filepath = filepath, limit=3)
 

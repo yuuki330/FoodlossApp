@@ -6,19 +6,21 @@ from enum import Enum
 import re
 from typing import List
 import matplotlib.pyplot as plt
+from preprocess import get_food_and_price_list
+from google.cloud.vision_v1 import types
 
 # Vision APIのキー
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./rakuten-intern-396705-196bcfd5bb92.json"
 
 def get_vision_api_response(input_file: str):
     # レシートのパス
-    # input_file = "./receipt.png"
+    # input_file = "./receipt2.jpeg"
 
     # APIへのイニシエーション
     client = vision.ImageAnnotatorClient()
     with io.open(input_file, 'rb') as image_file:
         content = image_file.read()
-        
+
     # bytes化した写真データをAPIに送る
     image = vision.Image(content=content)
 
