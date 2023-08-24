@@ -66,13 +66,14 @@ else:
 
         # リストの各項目をHTMLの箇条書きに変換
         recipeMaterial = eval(recipeMaterial)
-        materials_html = '<ul>'
+        materials_html = '<ul style="font-family:monospace; color:cyan; font-size: 12px;">'
         for material in recipeMaterial:
-            materials_html += f'<li>{material}</li>'
+            materials_html += f'<li style="font-family:monospace; color:black; font-size: 12px;">{material}</li>'
         materials_html += '</ul>'
 
-        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
-        material = f'<p target="_blank" style="font-family:monospace; color:cyan; font-size: 12px;">{materials_html}</p>'
+
+        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
+        material = f'<p target="_blank">{materials_html}</p>'
 
         combined_html = f"{recipe}<br>{material}"
 
