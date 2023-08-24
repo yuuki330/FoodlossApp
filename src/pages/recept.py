@@ -13,8 +13,22 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 from functions import add_stock
 import datetime
 today = datetime.date.today()
+import sys
+
+
+def get_expiration_limit(food_name, filepath = '/src/pages/data/expiration.db'):
+    import sqlite3
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+
+    cur.execute("SELECT expiration FROM food WHERE food_name = ?",(food_name, ))
+    items = cur.fetchone()
+
+    return items # like (180, 0) or None
+
 
 st.title("page2")
+
 uploaded_file = st.file_uploader("レシート画像をアップロード", type=['jpg','png'])
 
 if uploaded_file is not None:
@@ -31,8 +45,15 @@ if uploaded_file is not None:
         # st.table(df)
         
         df["purchase_date"] = today.strftime("%Y%m%d")
-        df["expiration_date"] = "20230823"
         df["amount"] = 1
+
+        df["expiration_date"] = today.strftime("%Y%m%d")
+        for i in range(len(df)):
+            food_name = df.iloc[i]["food_name"]
+            expiration_limit = get_expiration_limit(food_name)
+            if expiration_limit is not None:
+                df.loc[i, "expiration_date"] = (today + datetime.timedelta(days=expiration_limit[0])).strftime("%Y%m%d")
+    
         df = df.reindex(columns=['food_name', 'expiration_date', 'purchase_date', 'price', 'amount'])
 
         gd = GridOptionsBuilder.from_dataframe(df)
