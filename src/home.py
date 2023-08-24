@@ -33,9 +33,10 @@ if not os.path.exists(filepath):
 df, food_list = sort_expiration(filepath=filepath, limit=3)
 
 dt_now = datetime.datetime.now()
-date = dt_now.strftime("%Y%m%d")
+expiration_date = dt_now + datetime.timedelta(days=7)
+expiration_date = expiration_date.strftime("%Y%m%d")
 
-notice_df = df[df['expiration_date'] <= int(date)]
+notice_df = df[df['expiration_date'] <= int(expiration_date)]
 notice_df['expiration_date'] = pd.to_datetime(notice_df['expiration_date'].astype(str))
 notice_df['expiration_date'] = notice_df['expiration_date'].dt.date
 
@@ -44,7 +45,7 @@ if len(notice_df) == 0:
     comment = "消費期限が近いものはありません"
 else:
     expanded = True
-    comment = "消費期限が近いまたは過ぎているものがあります"
+    comment = "消費期限が近いです！レシピを確認してください！"
 
 with st.expander(comment, expanded=expanded):
     for _, row in notice_df.iterrows():

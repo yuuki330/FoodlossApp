@@ -7,7 +7,7 @@ import os
 # 現在のスクリプトファイルのディレクトリを取得
 current_dir = os.path.dirname(os.path.abspath(__file__))
 #"stock.sqlite"のディレクトリパスを取得
-filepath = os.path.join(current_dir, "data", "stock_japanese.sqlite")
+filepath = os.path.join(current_dir, "data", "stock.sqlite")
 #"recipe.db"のディレクトリパスを取得
 recipe_path = os.path.join(current_dir, "data", "recipe.db")
 
@@ -20,7 +20,7 @@ def _suggest_recipes(food_list: List[str]) -> List[tuple[str, str, str, str, str
             sub_order = []
             for i in range(len(food_list)):
                 if i:
-                    execute_order += " AND "
+                    execute_order += " OR "
                 execute_order += "recipeMaterial LIKE ?"
                 sub_order.append('%' + food_list[i] + '%')
             sub_order = tuple(sub_order)
@@ -58,8 +58,10 @@ elif not os.path.exists(recipe_path):
 else:
     ## streamlit表示
     st.markdown("# レシピ検索")
-    food_list = ['にんじん', 'じゃがいも', 'たまねぎ']
+    # food_list = ['にんじん', 'じゃがいも', 'たまねぎ']
+    _, food_list = sort_expiration(filepath=filepath, limit=3)
     items_list = suggest_recipe(filepath)
+    st.text(items_list)
 
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
