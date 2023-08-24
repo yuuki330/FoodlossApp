@@ -27,11 +27,26 @@ with sqlite3.connect(filepath) as conn:
     df = pd.read_sql(sql, conn)
 
 
+# item_id列をデータフレームの最後に移動
+cols = list(df.columns)
+cols.remove('item_id')
+df = df[cols + ['item_id']]
+
+cols = df.columns.tolist()
+food_name_index = cols.index('food_name')
+amount_index = cols.index('amount')
+cols.insert(food_name_index + 1, cols.pop(amount_index))
+price_index = cols.index('price')
+cols.insert(food_name_index + 2, cols.pop(price_index))
+
+df = df[cols]
+
 gd = GridOptionsBuilder.from_dataframe(df)
 gd.configure_selection(selection_mode='single', use_checkbox=True)
+gd.configure_column("item_id", hide=True)  # item_idを非表示に設定
 gridoptions = gd.build()
 
-grid_table = AgGrid(df, height=250, gridOptions=gridoptions,fit_columns_on_grid_load=True,
+grid_table = AgGrid(df, height=250, gridOptions=gridoptions,fit_columns_on_grid_load=False,
                     update_mode=GridUpdateMode.SELECTION_CHANGED)
 
 
