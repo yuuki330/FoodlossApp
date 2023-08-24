@@ -64,6 +64,7 @@ else:
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
 
+        st.write(recipeMaterial)
         # リストの各項目をHTMLの箇条書きに変換
         materials_html = '<ul>'
         for material in recipeMaterial:
@@ -72,7 +73,6 @@ else:
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 20px;">{recipeTitle}</a>'
         material = f'<p target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{materials_html}</p>'
-        st.write(recipeMaterial)
 
         with st.container():
             col1, col2 = st.columns([1,1])
