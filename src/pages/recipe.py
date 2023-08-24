@@ -66,6 +66,7 @@ else:
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
         # recipe_img = f'<img src="{foodImageUrl}" height="300" width="">'
-        st.components.v1.html(f"<center>{recipe}</center>")
+        # st.components.v1.html(f"<center>{recipe}</center>")
+        st.components.v1.html(f"{recipe}")
         st.image(foodImageUrl)
 
