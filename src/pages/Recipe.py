@@ -70,8 +70,10 @@ else:
             materials_html += f'<li>{material}</li>'
         materials_html += '</ul>'
 
-        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 30px;">{recipeTitle}</a>'
+        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 20px;">{recipeTitle}</a>'
         material = f'<p target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{materials_html}</p>'
+        st.write(material)
+        
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
