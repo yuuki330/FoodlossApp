@@ -11,7 +11,7 @@ filepath = os.path.join(current_dir, "data", "stock_japanese.sqlite")
 #"recipe.db"のディレクトリパスを取得
 recipe_path = os.path.join(current_dir, "data", "recipe.db")
 
-def _suggest_recipes(food_list: List[str], db_path: str) -> List[tuple[str, str, str, str, str]]:
+def _suggest_recipes(food_list: List[str]) -> List[tuple[str, str, str, str, str]]:
     try:
         with sqlite3.connect(recipe_path) as conn:
             cur = conn.cursor()
@@ -48,7 +48,7 @@ def sort_expiration(filepath = "stock.sqlite", limit=3):
 
 def suggest_recipe(db_path="stock.sqlite"):
     _, food_list = sort_expiration(db_path)
-    return _suggest_recipes(food_list, db_path)
+    return _suggest_recipes(food_list)
 
 # ファイルの存在を確認
 if not os.path.exists(filepath):
