@@ -28,12 +28,12 @@ with sqlite3.connect(filepath) as conn:
 
 
 gd = GridOptionsBuilder.from_dataframe(df)
-#gd.configure_selection(selection_mode='multiple', use_checkbox=True)
 gd.configure_selection(selection_mode='single', use_checkbox=True)
 gridoptions = gd.build()
 
-grid_table = AgGrid(df, height=250, gridOptions=gridoptions,fit_columns_on_grid_load=False,
+grid_table = AgGrid(df, height=250, gridOptions=gridoptions,fit_columns_on_grid_load=True,
                     update_mode=GridUpdateMode.SELECTION_CHANGED)
+
 
 selected_row = grid_table["selected_rows"]
 
