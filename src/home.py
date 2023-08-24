@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 
-from functions import sort_expiration
+from functions import sort_expiration, count_period_consume_discard
 import os
 
 # カスタムスタイリング
@@ -57,6 +57,19 @@ df = pd.DataFrame(data, columns=["サンプル1", "サンプル2"])
 
 # グラフの描画
 st.markdown("<h3 style='text-align: center;'>廃棄金額</h3>", unsafe_allow_html=True)
-st.line_chart(data=df, use_container_width=True)
-st.area_chart(data=df, use_container_width=True)
-st.bar_chart(data=df, use_container_width=True)
+
+period = 10
+consumed_list, discard_list = count_period_consume_discard(period=period, filepath=filepath)
+df = pd.DataFrame(np.vstack([consumed_list, discard_list]).T, columns=["consume", "discard"])
+
+df["date"] = [dt_now - datetime.timedelta(days=period - i - 1) for i in range(period)]
+
+# 折れ線グラフ
+st.line_chart(data=df,                     # データソース
+              x="date",               # X軸
+              y=["consume", "discard"],               # Y軸
+              width=0,                     # 表示設定（幅）
+              height=0,                    # 表示設定（高さ）
+              use_container_width=True,    # True の場合、グラフの幅を列の幅に設定
+              )
+

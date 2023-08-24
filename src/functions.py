@@ -167,6 +167,21 @@ def count_discard(start_date, end_date, filepath = "stock.sqlite"):
     
     return discard_sum
 
+def count_consumed(start_date, end_date, filepath = "stock.sqlite"):
+    
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+    
+    cur.execute("SELECT price, amount FROM consumed WHERE consumed_date BETWEEN ? AND ?",(start_date,end_date))
+    items = cur.fetchall()
+    #print(items)
+    
+    discard_sum = 0
+    for price,amount in items:
+        discard_sum += price*amount
+    
+    return discard_sum
+
 # 購入金額カウント（未完成）
 def count_stock(filepath = "stock.sqlite"):
     
@@ -183,6 +198,54 @@ def count_stock(filepath = "stock.sqlite"):
     
     return purchase_sum
 
+def count_daily_consumed(date, filepath = "stock.sqlite"):
+
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+    
+    cur.execute("SELECT price, amount FROM consumed WHERE consumed_date = ?",(date, ))
+    items = cur.fetchall()
+    #print(items)
+    
+    discard_sum = 0
+    for price,amount in items:
+        discard_sum += price*amount
+    
+    return discard_sum
+
+def count_daily_discard(date, filepath = "stock.sqlite"):
+
+    conn = sqlite3.connect(filepath) 
+    cur = conn.cursor()
+    
+    cur.execute("SELECT price, amount FROM discard WHERE discard_date = ?",(date, ))
+    items = cur.fetchall()
+    #print(items)
+    
+    discard_sum = 0
+    for price,amount in items:
+        discard_sum += price*amount
+    
+    return discard_sum
+
+def count_monthly_consume_discard():
+    import datetime
+    today = datetime.datetime.today()
+    first_date = today.replace(day=1)
+    consume = count_consumed(first_date.strftime("%Y%m%d"), today.strftime("%Y%m%d"))
+    discard = count_discard(first_date.strftime("%Y%m%d"), today.strftime("%Y%m%d"))
+    return (consume, discard)
+
+def count_period_consume_discard(period=30, filepath="stock.sqlite"):
+    import datetime
+    today = datetime.datetime.today()
+    consumed_list = []
+    discard_list = []
+    for i in range(period - 1, -1, -1):
+        date = (today - datetime.timedelta(days=i)).strftime("%Y%m%d")
+        consumed_list.append(count_daily_consumed(date, filepath))
+        discard_list.append(count_daily_discard(date, filepath))
+    return (consumed_list, discard_list)
 
 ## ソート系
 # 期限切れ早い順にソート(pandasのdf形式) ＆ 食材上位3つ(list形式)
