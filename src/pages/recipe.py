@@ -69,5 +69,5 @@ else:
         # st.components.v1.html(f"<center>{recipe}</center>")
         with st.container():
             st.components.v1.html(f"{recipe}")
-            st.image(foodImageUrl, use_column_width = "auto")
+            st.image(foodImageUrl, use_column_width = "auto", caption="aaaaaa")
 
