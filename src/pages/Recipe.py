@@ -64,7 +64,7 @@ else:
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
         recipeMaterial = eval(recipeMaterial)
-        initial_display = 5
+        initial_display = 3
         displayed_materials = recipeMaterial[:initial_display]
         hidden_materials = recipeMaterial[initial_display:]
 
@@ -96,7 +96,7 @@ else:
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
-                st.components.v1.html(combined_html, height=100)
+                st.components.v1.html(combined_html, height=300)
                 
                 # ボタンをHTMLの下に配置
                 if hidden_materials and not button_clicked:
