@@ -88,13 +88,12 @@ else:
         material = f'<p target="_blank">{materials_html}</p>'
 
         combined_html = f"{recipe}<br>{material}"
-        
-        if hidden_materials and st.button(f"もっと見る: {recipeTitle}"):
-            combined_html += hidden_html
 
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
                 st.components.v1.html(combined_html, height=300) 
+                if hidden_materials and st.button(f"もっと見る"):
+                    combined_html += hidden_html
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
