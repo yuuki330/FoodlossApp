@@ -11,7 +11,8 @@ dt_now = datetime.datetime.now()
 from functions import init_stock, add_stock, delete_stock, consume, discard,count_discard, get_stock, update_stock
 
 # 現在のスクリプトファイルのディレクトリを取得
-current_dir = os.getcwd()
+# current_dir = os.getcwd()
+current_dir = os.path.dirname(os.path.abspath(__file__))
 #"stock.sqlite"のディレクトリパスを取得
 filepath = os.path.join(current_dir, "pages", "data", "stock.sqlite")
 
