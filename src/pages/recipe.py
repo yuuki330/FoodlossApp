@@ -8,10 +8,12 @@ import os
 current_dir = os.getcwd()
 #"stock.sqlite"のディレクトリパスを取得
 filepath = os.path.join(current_dir, "pages", "data", "stock_japanese.sqlite")
+#"recipe.db"のディレクトリパスを取得
+recipe_path = os.path.join(current_dir, "pages", "data", "recipe.db")
 
-def _suggest_recipes(food_list: List[str]) -> List[tuple[str, str, str, str, str]]:
+def _suggest_recipes(food_list: List[str], db_path: str) -> List[tuple[str, str, str, str, str]]:
     try:
-        with sqlite3.connect("recipe.db") as conn:
+        with sqlite3.connect(recipe_path) as conn:
             cur = conn.cursor()
 
             execute_order = "SELECT * FROM recipe WHERE "
@@ -44,9 +46,9 @@ def sort_expiration(filepath = "stock.sqlite", limit=3):
     
     return df,food_list
 
-def suggest_recipe(db_name="stock.sqlite"):
-    _, food_list = sort_expiration(db_name)
-    return _suggest_recipes(food_list)
+def suggest_recipe(db_path="stock.sqlite"):
+    _, food_list = sort_expiration(db_path)
+    return _suggest_recipes(food_list, db_path)
 
 
 ## streamlit表示
