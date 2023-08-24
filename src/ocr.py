@@ -1,7 +1,6 @@
 from google.cloud import vision
 import io
 import os
-import cv2
 from enum import Enum
 import re
 from typing import List
