@@ -57,7 +57,7 @@ elif not os.path.exists(recipe_path):
     st.error(f"{recipe_path} が存在しません。")
 else:
     ## streamlit表示
-    st.markdown("# レシピ検索")
+    st.markdown("# レシピ提案")
     _, food_list = sort_expiration(filepath=filepath, limit=3)
     items_list = suggest_recipe(filepath)
 
