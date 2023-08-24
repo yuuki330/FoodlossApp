@@ -20,7 +20,7 @@ if not os.path.exists(filepath):
     st.error(f"{filepath} が存在しません。")
     exit()
 
-st.title("Stock 画面")
+st.title("在庫一覧")
 
 with sqlite3.connect(filepath) as conn:
     sql = "SELECT * FROM stocks"
