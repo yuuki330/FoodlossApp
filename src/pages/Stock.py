@@ -8,21 +8,13 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 import datetime
 dt_now = datetime.datetime.now()
 
-# import sys 
-# sys.path.append("../")
 from functions import init_stock, add_stock, delete_stock, consume, discard,count_discard, get_stock, update_stock
 
 # 現在のスクリプトファイルのディレクトリを取得
-current_dir = os.path.dirname(os.path.abspath(__file__))
-# 1つ上の階層のディレクトリパスを取得
-parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+current_dir = os.getcwd()
 #"stock.sqlite"のディレクトリパスを取得
-filepath = os.path.join(parent_dir, "stock.sqlite")
-
-
+filepath = os.path.join(current_dir, "pages", "data", "stock.sqlite")
 st.title("Stock 画面")
-
-
 
 with sqlite3.connect(filepath) as conn:
     sql = "SELECT * FROM stocks"

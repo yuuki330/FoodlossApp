@@ -14,9 +14,7 @@ from functions import add_stock
 import datetime
 today = datetime.date.today()
 
-
 st.title("page2")
-
 uploaded_file = st.file_uploader("レシート画像をアップロード", type=['jpg','png'])
 
 if uploaded_file is not None:

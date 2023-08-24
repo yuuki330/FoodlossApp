@@ -12,7 +12,7 @@ import os
 # 現在のスクリプトファイルのディレクトリを取得
 current_dir = os.path.dirname(os.path.abspath(__file__))
 #"stock.sqlite"のディレクトリパスを取得
-filepath = os.path.join(current_dir, "stock.sqlite")
+filepath = os.path.join(current_dir, "pages", "data", "stock.sqlite")
 
 df, food_list = sort_expiration(filepath = filepath, limit=3)
 
