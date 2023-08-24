@@ -93,7 +93,7 @@ else:
         # material変数に含まれるHTMLの<li>タグの数をカウント
         material_li_count = material.count('<li>')
         # 1つの<li>タグ項目の高さを設定
-        height_per_li = 20
+        height_per_li = 40
         # 必要な高さを計算
         calculated_height = material_li_count * height_per_li
 
