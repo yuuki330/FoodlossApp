@@ -50,16 +50,21 @@ def suggest_recipe(db_path="stock.sqlite"):
     _, food_list = sort_expiration(db_path)
     return _suggest_recipes(food_list, db_path)
 
+# ファイルの存在を確認
+if not os.path.exists(filepath):
+    st.error(f"{filepath} が存在しません。")
+elif not os.path.exists(recipe_path):
+    st.error(f"{recipe_path} が存在しません。")
+else:
+    ## streamlit表示
+    st.markdown("# レシピ検索")
+    food_list = ['にんじん', 'じゃがいも', 'たまねぎ']
+    items_list = suggest_recipe(filepath)
 
-## streamlit表示
-st.markdown("# レシピ検索")
-food_list = ['にんじん', 'じゃがいも', 'たまねぎ']
-items_list = suggest_recipe(filepath)
+    for v in items_list:
+        (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
 
-for v in items_list:
-    (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
-
-    recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
-    recipe_img = f'<img src="{foodImageUrl}" height="100" width="200">'
-    st.components.v1.html(f"<center>{recipe}</center><center>{recipe_img}</center>")
+        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
+        recipe_img = f'<img src="{foodImageUrl}" height="100" width="200">'
+        st.components.v1.html(f"<center>{recipe}</center><center>{recipe_img}</center>")
 
