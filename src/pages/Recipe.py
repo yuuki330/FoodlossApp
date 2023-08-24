@@ -66,11 +66,23 @@ else:
 
         # リストの各項目をHTMLの箇条書きに変換
         recipeMaterial = eval(recipeMaterial)
+
+        # 最初に表示する材料数
+        initial_display = 5
+        displayed_materials = recipeMaterial[:initial_display]
+        hidden_materials = recipeMaterial[initial_display:]
+
         materials_html = '<ul style="font-family:monospace; color:white; font-size: 12px;">'
-        for material in recipeMaterial:
+        for material in displayed_materials:
             materials_html += f'<li>{material}</li>'
         materials_html += '</ul>'
 
+        if hidden_materials and st.button(f"もっと見る: {recipeTitle}"):
+            hidden_html = '<ul style="font-family:monospace; color:white; font-size: 12px;">'
+            for material in hidden_materials:
+                hidden_html += f'<li>{material}</li>'
+            hidden_html += '</ul>'
+            materials_html += hidden_html
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 18px;">{recipeTitle}</a>'
         material = f'<p target="_blank">{materials_html}</p>'
@@ -80,7 +92,6 @@ else:
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
-                st.components.v1.html(combined_html, height=300) 
+                st.components.v1.html(combined_html) 
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
-
