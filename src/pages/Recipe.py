@@ -75,7 +75,7 @@ else:
 
         hidden_html = ''
         if hidden_materials:
-            hidden_html = '<ul style="font-family:monospace; color:white; font-size: 12px;">'
+            hidden_html = '<ul style="font-family:monospace; color:white; font-size: 12px;　margin: 0; padding: 0;"">'
             for material in hidden_materials:
                 hidden_html += f'<li>{material}</li>'
             hidden_html += '</ul>'
