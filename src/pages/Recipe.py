@@ -64,7 +64,7 @@ else:
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
         recipeMaterial = eval(recipeMaterial)
-        initial_display = 4
+        initial_display = 3
         displayed_materials = recipeMaterial[:initial_display]
         hidden_materials = recipeMaterial[initial_display:]
 
@@ -93,7 +93,7 @@ else:
         # material変数に含まれるHTMLの<li>タグの数をカウント
         material_li_count = material.count('<li>')
         # 1つの<li>タグ項目の高さを設定
-        height_per_li = 20
+        height_per_li = 21
         # 必要な高さを計算
         calculated_height = material_li_count * height_per_li + 50
 
