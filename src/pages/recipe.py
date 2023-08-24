@@ -65,9 +65,10 @@ else:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
 
         recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
-        # recipe_img = f'<img src="{foodImageUrl}" height="300" width="">'
-        # st.components.v1.html(f"<center>{recipe}</center>")
         with st.container():
-            st.components.v1.html(f"{recipe}")
-            st.image(foodImageUrl, use_column_width = "auto", caption="aaaaaa")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.components.v1.html(f"{recipe}") 
+            with col2:
+                st.image(foodImageUrl, use_column_width = "auto", caption="aaaaaa")
 
