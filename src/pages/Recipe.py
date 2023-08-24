@@ -64,20 +64,22 @@ else:
     for v in items_list:
         (_, recipeTitle, recipeMaterial, foodImageUrl, recipeUrl) = v
 
-        st.write(recipeMaterial)
         # リストの各項目をHTMLの箇条書きに変換
+        recipeMaterial = eval(recipeMaterial)
         materials_html = '<ul>'
         for material in recipeMaterial:
             materials_html += f'<li>{material}</li>'
         materials_html += '</ul>'
 
-        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 20px;">{recipeTitle}</a>'
-        material = f'<p target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{materials_html}</p>'
+        recipe = f'<a href="{recipeUrl}" target="_blank" style="font-family:monospace; color:cyan; font-size: 15px;">{recipeTitle}</a>'
+        material = f'<p target="_blank" style="font-family:monospace; color:cyan; font-size: 12px;">{materials_html}</p>'
+
+        combined_html = f"{recipe}<br>{material}"
 
         with st.container():
             col1, col2 = st.columns([1,1])
             with col1:
-                st.components.v1.html(f"{recipe}") 
-                st.components.v1.html(f"{material}")
+                st.components.v1.html(combined_html) 
             with col2:
                 st.image(foodImageUrl, use_column_width = "auto")
+
