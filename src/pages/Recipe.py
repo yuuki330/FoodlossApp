@@ -60,9 +60,11 @@ def highlight_material(material, food_list, color):
 
 # ファイルの存在を確認
 if not os.path.exists(filepath):
-    st.error(f"{filepath} が存在しません。")
+    print(f"{filepath} が存在しません。")
+    exit()
 elif not os.path.exists(recipe_path):
-    st.error(f"{recipe_path} が存在しません。")
+    print(f"{recipe_path} が存在しません。")
+    exit()
 else:
     ## streamlit表示
     st.markdown("# レシピ提案")

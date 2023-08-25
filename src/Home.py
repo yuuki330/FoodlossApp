@@ -53,6 +53,7 @@ filepath = st.session_state.user_db_filepath
 
 if not os.path.exists(filepath):
     # st.error(f"ユーザー名を入力してください。")
+    print(f"{filepath} が存在しません。")
     exit()
 
 df, food_list = sort_expiration(filepath=filepath, limit=3)
