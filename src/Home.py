@@ -85,8 +85,6 @@ data = np.random.rand(50, 2)
 df = pd.DataFrame(data, columns=["サンプル1", "サンプル2"])
 
 # グラフの描画
-st.markdown("<h3 style='text-align: center;'>廃棄金額</h3>", unsafe_allow_html=True)
-
 st.markdown(f"<h3 style='text-align: center;'>{dt_now.month}月の消費額</h3>", unsafe_allow_html=True)
 df_total = pd.DataFrame([count_monthly_consume_discard(filepath)], index=[""], columns=['月の消費額(円)', '月の廃棄額(円)'])
 st.bar_chart(df_total)
