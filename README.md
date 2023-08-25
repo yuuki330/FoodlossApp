@@ -4,3 +4,12 @@
 - [ ] ユーザー名を入力する前に「Recipe」や「Stock」のページに遷移すると中途半端なエラーメッセージが表示される
 - [ ]　
 - [ ]
+
+
+## Vision API
+```
+pip3 install --upgrade google-cloud-vision
+gcloud auth application-default login
+pip3 install --upgrade google-cloud-vision 
+gcloud auth application-default login
+```
