@@ -47,6 +47,7 @@ for i in range(len(df)):
     df["purchase_date"][i] = str(df["purchase_date"][i][:4]) +"/"+str(df["purchase_date"][i][4:6]) + "/" + str(df["purchase_date"][i][6:])
     df["price"][i] = str(df["price"][i]) + "円"
 
+df = df.sort_values('item_id', ascending=False)
 
 gd = GridOptionsBuilder.from_dataframe(df)
 gd.configure_selection(selection_mode='single', use_checkbox=False)
