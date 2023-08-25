@@ -18,7 +18,7 @@ filepath = st.session_state.user_db_filepath
 
 # ファイルの存在を確認
 if not os.path.exists(filepath):
-    st.error(f"{filepath} が存在しません。")
+    print(f"{filepath} が存在しません。")
     exit()
 
 st.title("在庫一覧")
