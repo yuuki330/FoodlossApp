@@ -27,6 +27,17 @@ with sqlite3.connect(filepath) as conn:
     sql = "SELECT * FROM stocks"
     df = pd.read_sql(sql, conn)
 
+# item_id列をデータフレームの最後に移動
+cols = list(df.columns)
+cols.remove('item_id')
+df = df[cols + ['item_id']]
+cols = df.columns.tolist()
+food_name_index = cols.index('food_name')
+amount_index = cols.index('amount')
+cols.insert(food_name_index + 1, cols.pop(amount_index))
+price_index = cols.index('price')
+cols.insert(food_name_index + 2, cols.pop(price_index))
+df = df[cols]
 
 df["expiration_date"] = df["expiration_date"].astype(str)
 df["purchase_date"] = df["purchase_date"].astype(str)
