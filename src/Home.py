@@ -65,7 +65,7 @@ expiration_date = expiration_date.strftime("%Y%m%d")
 notice_df = df[df['expiration_date'] <= int(expiration_date)]
 notice_df['expiration_date'] = pd.to_datetime(notice_df['expiration_date'].astype(str))
 for i in range(len(df)):
-    notice_df.loc[i, 'expiration_limit'] = dt_now - notice_df.iloc[i]['expiration_date']
+    notice_df.loc[i, 'expiration_limit'] = notice_df.iloc[i]['expiration_date'] - dt_now
     notice_df.loc[i, 'expiration_limit'] = notice_df.loc[i, 'expiration_limit'].days
 notice_df['expiration_date'] = notice_df['expiration_date'].dt.date
 
