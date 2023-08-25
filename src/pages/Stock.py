@@ -113,8 +113,8 @@ if selector == "追加":
         expiration_date = expiration_date.strftime("%Y%m%d")
         purchase_date = st.date_input("購入日",  value=datetime.date(dt_now.year, dt_now.month, dt_now.day))
         purchase_date = purchase_date.strftime("%Y%m%d")
-        price = st.number_input("値段",min_value=0)
-        amount = st.number_input("量",min_value=0)
+        price = st.number_input("値段[円]",min_value=0)
+        amount = st.number_input("数量[個]",min_value=0)
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("追加")
@@ -141,8 +141,8 @@ else:
             purchase_date2 = st.date_input("購入日",  value=datetime.date(item_pur_date.year, item_pur_date.month, item_pur_date.day))
             purchase_date2 = purchase_date2.strftime("%Y%m%d")
 
-            price2 = st.number_input("値段",min_value=0,value=item_info[4])
-            amount2 = st.number_input("量",min_value=0,value=item_info[5])
+            price2 = st.number_input("値段[円]",min_value=0,value=item_info[4])
+            amount2 = st.number_input("数量[個]",min_value=0,value=item_info[5])
 
             # Every form must have a submit button.
             submitted = st.form_submit_button("変更")
