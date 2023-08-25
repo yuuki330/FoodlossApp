@@ -228,12 +228,12 @@ def count_daily_discard(date, filepath = "stock.sqlite"):
     
     return discard_sum
 
-def count_monthly_consume_discard():
+def count_monthly_consume_discard(filepath = "stock.sqlite"):
     import datetime
     today = datetime.datetime.today()
     first_date = today.replace(day=1)
-    consume = count_consumed(first_date.strftime("%Y%m%d"), today.strftime("%Y%m%d"))
-    discard = count_discard(first_date.strftime("%Y%m%d"), today.strftime("%Y%m%d"))
+    consume = count_consumed(first_date.strftime("%Y%m%d"), today.strftime("%Y%m%d"), filepath)
+    discard = count_discard(first_date.strftime("%Y%m%d"), today.strftime("%Y%m%d"), filepath)
     return (consume, discard)
 
 def count_period_consume_discard(period=30, filepath="stock.sqlite"):

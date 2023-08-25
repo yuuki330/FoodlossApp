@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 
-from functions import sort_expiration, count_period_consume_discard, init_stock
+from functions import sort_expiration, count_period_consume_discard, init_stock, count_monthly_consume_discard
 import os
 
 
@@ -64,6 +64,9 @@ expiration_date = expiration_date.strftime("%Y%m%d")
 
 notice_df = df[df['expiration_date'] <= int(expiration_date)]
 notice_df['expiration_date'] = pd.to_datetime(notice_df['expiration_date'].astype(str))
+for i in range(len(df)):
+    notice_df.loc[i, 'expiration_limit'] = dt_now - notice_df.iloc[i]['expiration_date']
+    notice_df.loc[i, 'expiration_limit'] = notice_df.loc[i, 'expiration_limit'].days
 notice_df['expiration_date'] = notice_df['expiration_date'].dt.date
 
 if len(notice_df) == 0:
@@ -75,7 +78,7 @@ else:
 
 with st.expander(comment, expanded=expanded):
     for _, row in notice_df.iterrows():
-        st.markdown(f"<span class='highlight'>{row['food_name']}</span> の消費期限は <span class='highlight'>{row['expiration_date']}</span> です。", unsafe_allow_html=True)
+        st.markdown(f"<span class='highlight'>{row['food_name']}</span> の消費期限まであと<span class='highlight'>{row['expiration_limit']}日</span> です。", unsafe_allow_html=True)
 
 # ダミーデータの作成
 data = np.random.rand(50, 2)
@@ -84,18 +87,47 @@ df = pd.DataFrame(data, columns=["サンプル1", "サンプル2"])
 # グラフの描画
 st.markdown("<h3 style='text-align: center;'>廃棄金額</h3>", unsafe_allow_html=True)
 
-period = 10
-consumed_list, discard_list = count_period_consume_discard(period=period, filepath=filepath)
-df = pd.DataFrame(np.vstack([consumed_list, discard_list]).T, columns=["consume", "discard"])
+st.markdown("<h3 style='text-align: center;'>月の消費額</h3>", unsafe_allow_html=True)
+df_total = pd.DataFrame([count_monthly_consume_discard(filepath)], columns=['月の消費額(円)', '月の廃棄額(円)'])
+st.bar_chart(df_total)
 
-df["date"] = [dt_now - datetime.timedelta(days=period - i - 1) for i in range(period)]
+period = 10
+st.markdown(f"<h3 style='text-align: center;'>過去{period}日廃棄金額</h3>", unsafe_allow_html=True)
+consumed_list, discard_list = count_period_consume_discard(period=period, filepath=filepath)
+consumed_list = np.array(consumed_list)
+discard_list = np.array(discard_list)
+df_columns=["消費額(円)", "廃棄額(円)"]
+df = pd.DataFrame(np.vstack([consumed_list, discard_list + consumed_list]).T, columns=df_columns)
+df["日付"] = [dt_now - datetime.timedelta(days=period - i - 1) for i in range(period)]
+japanese_format = '%Y年%m月%d日'
+for i in range(period):
+    df.loc[i, "日付_japanese"] = df.loc[i, '日付'].strftime(japanese_format)
+for i in range(period):
+    df.loc[i, "日付_slash"] = df.loc[i, '日付'].strftime('%m/%d')
 
 # 折れ線グラフ
-st.line_chart(data=df,                     # データソース
-              x="date",               # X軸
-              y=["consume", "discard"],               # Y軸
+st.area_chart(data=df,                     # データソース
+              x="日付",                     # X軸
+              y=df_columns,               # Y軸
               width=0,                     # 表示設定（幅）
               height=0,                    # 表示設定（高さ）
               use_container_width=True,    # True の場合、グラフの幅を列の幅に設定
               )
 
+# 折れ線グラフ
+st.area_chart(data=df,                     # データソース
+              x="日付_japanese",               # X軸
+              y=df_columns,               # Y軸
+              width=0,                     # 表示設定（幅）
+              height=0,                    # 表示設定（高さ）
+              use_container_width=True,    # True の場合、グラフの幅を列の幅に設定
+              )
+
+# 折れ線グラフ
+st.area_chart(data=df,                     # データソース
+              x="日付_slash",               # X軸
+              y=df_columns,               # Y軸
+              width=0,                     # 表示設定（幅）
+              height=0,                    # 表示設定（高さ）
+              use_container_width=True,    # True の場合、グラフの幅を列の幅に設定
+              )
