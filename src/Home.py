@@ -113,21 +113,3 @@ st.area_chart(data=df,                     # データソース
               height=0,                    # 表示設定（高さ）
               use_container_width=True,    # True の場合、グラフの幅を列の幅に設定
               )
-
-# 折れ線グラフ
-st.area_chart(data=df,                     # データソース
-              x="日付_japanese",               # X軸
-              y=df_columns,               # Y軸
-              width=0,                     # 表示設定（幅）
-              height=0,                    # 表示設定（高さ）
-              use_container_width=True,    # True の場合、グラフの幅を列の幅に設定
-              )
-
-# 折れ線グラフ
-st.area_chart(data=df,                     # データソース
-              x="日付_slash",               # X軸
-              y=df_columns,               # Y軸
-              width=0,                     # 表示設定（幅）
-              height=0,                    # 表示設定（高さ）
-              use_container_width=True,    # True の場合、グラフの幅を列の幅に設定
-              )
