@@ -1,7 +1,9 @@
 # Team5
 ## webアプリアクセス
 https://foodlossapp-kyaivashpu42jrqnheaqxn.streamlit.app/
+![代替テキスト](./プレゼン資料/QRコード.png "QRコードからのアクセス")
 
+##
 
 ## 現在確認されている不具合・改善点
 - [ ] レシピの「もっと見る」を押した際に表示が途切れる場合がある
