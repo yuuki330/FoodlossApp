@@ -1,6 +1,6 @@
 # Team5
 ## webアプリアクセス
-[FoodlossApp][https://foodlossapp-kyaivashpu42jrqnheaqxn.streamlit.app/]
+https://foodlossapp-kyaivashpu42jrqnheaqxn.streamlit.app/
 
 
 ## 現在確認されている不具合・改善点
